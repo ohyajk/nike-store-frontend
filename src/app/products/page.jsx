@@ -5,6 +5,7 @@ import Box from './box'
 
 const page = () => {
 
+    const allCategory = ['Men', 'Women', 'Kids']
     const [category, setCategory] = useState('All')
     console.log(category)
 
@@ -23,6 +24,13 @@ const page = () => {
             price: 200,
             id: 2,
         },
+        {
+            img: 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e6da41fa-1be4-4ce5-b89c-22be4f1f02d4/air-force-1-07-shoes-WrLlWX.png',
+            name: 'Nike Air Force 2 14',
+            category: 'Kids',
+            price: 100,
+            id: 2,
+        },
     ]
 
     return (
@@ -35,10 +43,19 @@ const page = () => {
                     </span>
                 </h1>
                 <div className='py-8 flex justify-center items-center text-xl font-semibold gap-4 flex-wrap'>
-                    <span onClick={() => setCategory('All')} className={category == 'All' ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer' : 'border-4 px-4 py-2 rounded-lg cursor-pointer'} >ALL</span>
-                    <span onClick={() => setCategory('Men')} className={category == 'Men' ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer' : 'border-4 px-4 py-2 rounded-lg cursor-pointer'} >MEN</span>
-                    <span onClick={() => setCategory('Women')} className={category == 'Women' ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer' : 'border-4 px-4 py-2 rounded-lg cursor-pointer'} >WOMEN</span>
-                    <span onClick={() => setCategory('Kids')} className={category == 'Kids' ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer' : 'border-4 px-4 py-2 rounded-lg cursor-pointer'} >KIDS</span>
+                    <span onClick={() => setCategory('All')} className={category == 'All' ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer uppercase' : 'border-4 px-4 py-2 rounded-lg cursor-pointer uppercase'} >All</span>
+                    {
+                        allCategory.map((c) => {
+                            if (allProduct.some((p) => p.category.includes(c))) {
+
+                                return (
+                                    <span onClick={() => setCategory(c)} className={category == c ? 'text-org border-4 border-org px-4 py-2 rounded-lg cursor-pointer uppercase' : 'border-4 px-4 py-2 rounded-lg cursor-pointer uppercase'} >{c}</span>)
+                            } else {
+                                return (
+                                    <span className='text-white/50 border-4 border-white/50 px-4 py-2 rounded-lg cursor-default uppercase' aria-disabled>{c}</span>)
+                            }
+                        }
+                        )}
                 </div>
                 <section className='md:py-12 grid justify-center grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4'>
                     {allProduct.filter((p) => category == 'All' || p.category == category).map((product) => <Box data={product} />)}
