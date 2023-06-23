@@ -1,14 +1,28 @@
-'use client'
+"use client"
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
 
-    const user = useSelector(state => state.user)
-    console.log(user)
+    const userFromRedux = useSelector(state => state.user)
+    const [user, setUser] = useState(null)
+    useEffect(() => {
+        const ls = JSON.parse(localStorage.getItem('user'));
+        if (ls && !user) {
+            setUser(ls);
+        }
+    }, []);
+
+    useEffect(() => {
+        const ls = JSON.parse(localStorage.getItem('user'));
+        if (ls) {
+            setUser(ls);
+        }
+    }, [userFromRedux]);
+
     const currentRoute = useSelectedLayoutSegment()
     const [showMobNav, setShowMobNav] = useState(false)
 
