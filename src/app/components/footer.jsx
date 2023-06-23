@@ -10,8 +10,8 @@ const Footer = () => {
                     <li><a href="https://www.instagram.com/ohyajk"><i className='bx bxl-instagram text-5xl hover:text-org'></i></a></li>
                 </ul>
                 <div>
-                    <h2 className='text-xl font-bold'>MADE WITH ❤️ BY JITENDER KUMAR</h2>
-                    <h3>DESIGN INSPIRED FROM <a className='text-org font-semibold border-b-2 border-white hover:border-org hover:text-white' href="https://www.linkedin.com/in/chinmayee-khavale/" target="_blank" rel="noopener noreferrer">CHINMAYEE K.</a></h3>
+                    <h2 className='sm:text-xl font-bold'>MADE WITH ❤️ BY JITENDER KUMAR</h2>
+                    <h3 className='text-sm sm:text-base'>DESIGN INSPIRED FROM <a className='text-org font-semibold border-b-2 border-white hover:border-org hover:text-white' href="https://www.linkedin.com/in/chinmayee-khavale/" target="_blank" rel="noopener noreferrer">CHINMAYEE K.</a></h3>
                 </div>
                 <p className='text-center text-sm'>&#169; &#174; <a className='text-org font-semibold border-b-2 border-white hover:border-org hover:text-white' href="https://www.nike.com" target="_blank" rel="noopener noreferrer">Nike & Air Jordan.</a> All logo, images and brand names are property of <a className='text-org font-semibold border-b-2 border-white hover:border-org hover:text-white' href="https://www.nike.com" target="_blank" rel="noopener noreferrer">Nike, Inc.</a><br /> I am not in any way affiliated to Nike or any brand shown in my project.<br />I invoke section 107 of the <a className='text-org font-semibold border-b-2 border-white hover:border-org hover:text-white' href="https://copyright.gov.in/Exceptions.aspx" target="_blank" rel="noopener noreferrer">Copyright Act 1976,</a> India</p>
             </div>
