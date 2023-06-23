@@ -1,15 +1,17 @@
 "use client"
 import { api } from '@/api/api'
+import { setUserFromLocalStorage } from '@/redux/slice/userSlice'
 import { useFormik } from 'formik'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
 
 const SignIn = () => {
 
     const router = useRouter()
-
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
     const [res, setRes] = useState(1)
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -47,6 +49,7 @@ const SignIn = () => {
                     });
                 }
                 localStorage.setItem('user', JSON.stringify(data));
+                dispatch(setUserFromLocalStorage())
                 setTimeout(() => {
                     router.push('/');
                 }, 1500);

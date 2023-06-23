@@ -9,6 +9,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <head>
@@ -18,15 +19,15 @@ export default function RootLayout({ children }) {
         />
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       </head>
-      <body className='scrollbar mx-auto max-w-[1280px] px-4 sm:px-10 flex flex-col justify-between min-h-screen' >
-        <Navbar />
-        <div className='flex flex-col flex-grow '>
-          <ReduxProvider>
+      <ReduxProvider>
+        <body className='scrollbar mx-auto max-w-[1280px] px-4 sm:px-10 flex flex-col justify-between min-h-screen' >
+          <Navbar />
+          <div className='flex flex-col flex-grow '>
             {children}
-          </ReduxProvider>
-        </div>
-        <Footer />
-      </body>
+          </div>
+          <Footer />
+        </body>
+      </ReduxProvider>
     </html>
   )
 }

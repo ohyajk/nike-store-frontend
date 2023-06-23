@@ -2,10 +2,13 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useSelectedLayoutSegment } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
 
+    const user = useSelector(state => state.user)
+    console.log(user)
     const currentRoute = useSelectedLayoutSegment()
     const [showMobNav, setShowMobNav] = useState(false)
 
@@ -15,8 +18,6 @@ const Navbar = () => {
         { link: 'about', name: 'ABOUT', icon: 'info-circle' },
         { link: 'contact', name: 'CONTACT', icon: 'envelope' },
     ]
-
-    const user = JSON.parse(localStorage.getItem('user'))
 
     return (
         <header>
