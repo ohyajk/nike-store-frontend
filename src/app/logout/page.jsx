@@ -9,7 +9,7 @@ const page = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         document.cookie = 'cookieName=token; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        localStorage.removeItem('user')
+        window.localStorage.removeItem('user')
         dispatch(setUserFromLocalStorage())
         setTimeout(() => {
             router.push('/')

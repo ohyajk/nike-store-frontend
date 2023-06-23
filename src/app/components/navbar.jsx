@@ -7,21 +7,7 @@ import { useSelector } from 'react-redux'
 
 const Navbar = () => {
 
-    const userFromRedux = useSelector(state => state.user)
-    const [user, setUser] = useState(null)
-    useEffect(() => {
-        const ls = JSON.parse(localStorage.getItem('user'));
-        if (ls && !user) {
-            setUser(ls);
-        }
-    }, []);
-
-    useEffect(() => {
-        const ls = JSON.parse(localStorage.getItem('user'));
-        if (ls) {
-            setUser(ls);
-        }
-    }, [userFromRedux]);
+    const user = useSelector(state => state.user)
 
     const currentRoute = useSelectedLayoutSegment()
     const [showMobNav, setShowMobNav] = useState(false)

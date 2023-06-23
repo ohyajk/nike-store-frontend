@@ -5,7 +5,7 @@ const userSlice = createSlice({
     initialState: null,
     reducers: {
         setUserFromLocalStorage(state) {
-            const ls = JSON.parse(localStorage.getItem('user'));
+            const ls = JSON.parse(window.localStorage.getItem('user'));
             return ls;
         },
     },

@@ -48,7 +48,7 @@ const SignIn = () => {
                         document.cookie = cookie.trim();
                     });
                 }
-                localStorage.setItem('user', JSON.stringify(data));
+                window.localStorage.setItem('user', JSON.stringify(data));
                 dispatch(setUserFromLocalStorage())
                 setTimeout(() => {
                     router.push('/');
