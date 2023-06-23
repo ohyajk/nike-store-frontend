@@ -16,6 +16,8 @@ const Navbar = () => {
         { link: 'contact', name: 'CONTACT', icon: 'envelope' },
     ]
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
     return (
         <header>
             {/* PC NAVBAR */}
@@ -27,8 +29,10 @@ const Navbar = () => {
                     }
                 </ul>
                 <ul className='flex justify-center items-center gap-1 md:gap-2 lg:gap-3'>
+                    {user && user?.data && <span className='flex items-center gap-1'><i className='bx bx-user-circle text-[20px] md:text-[26px] lg:text-[32px]'></i><h2 className='md:text-lg lg:text-xl font-medium uppercase'>{user.data.firstName}</h2></span>}
                     <Link href="/cart" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-cart text-[20px] md:text-[26px] lg:text-[32px] '></i><span className='md:text-lg lg:text-xl font-medium'>CART</span></Link>
-                    <Link href="/login" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-user-circle text-[20px] md:text-[26px] lg:text-[32px] hover:text-org transition-colors ease-in-out delay-75 duration-100 hover:scale-110 cursor-pointer'></i><span className='md:text-lg lg:text-xl font-medium'>LOGIN</span></Link>
+                    {!user && !user?.data && <Link href="/login" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-user-circle text-[20px] md:text-[26px] lg:text-[32px]'></i><span className='md:text-lg lg:text-xl font-medium'>LOGIN</span></Link>}
+                    {user && user?.data && <Link href="/logout" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-log-out-circle text-[20px] md:text-[26px] lg:text-[32px]'></i><span className='md:text-lg lg:text-xl font-medium'>LOGOUT</span></Link>}
                 </ul>
             </nav>
             {/* MOBILE NAVBAR */}
@@ -48,8 +52,9 @@ const Navbar = () => {
                             }
                         </ul>
                         <ul className='flex justify-center items-center gap-4 text-white'>
-                            <Link onClick={() => setShowMobNav(!showMobNav)} href='/cart'><i className='bx bx-cart text-[32px]'></i>CART</Link>
-                            <Link onClick={() => setShowMobNav(!showMobNav)} href='/login'><i className='bx bx-user-circle text-[32px]'></i></Link>
+                            <Link onClick={() => setShowMobNav(!showMobNav)} href='/cart' className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-cart text-[32px]'></i><span className='md:text-lg lg:text-xl font-medium'>CART</span></Link>
+                            {!user && !user?.data && <Link onClick={() => setShowMobNav(!showMobNav)} href="/login" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-user-circle text-[32px]'></i><span className='md:text-lg lg:text-xl font-medium'>LOGIN</span></Link>}
+                            {user && user?.data && <Link onClick={() => setShowMobNav(!showMobNav)} href="/logout" className='flex items-center gap-1 hover:text-org transition-colors ease-in-out delay-75 duration-100 cursor-pointer'><i className='bx bx-log-out-circle text-[32px]'></i><span className='md:text-lg lg:text-xl font-medium'>LOGOUT</span></Link>}
                         </ul>
                     </div>
                 }

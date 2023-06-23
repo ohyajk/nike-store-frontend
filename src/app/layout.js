@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className='scrollbar mx-auto max-w-[1280px] px-4 sm:px-10 flex flex-col justify-between min-h-screen' >
         <Navbar />
-        <div className='flex flex-col flex-grow'>
+        <div className='flex flex-col flex-grow '>
           <ReduxProvider>
             {children}
           </ReduxProvider>
