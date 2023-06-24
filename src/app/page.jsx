@@ -1,10 +1,12 @@
-import Hero from "./hero"
-import Sec1 from "./sec1"
+import Hero from "./home/hero"
+import Hero2 from "./home/hero2"
+import Hero3 from "./home/hero3"
 export default function Home() {
   return (
     <>
       <Hero />
-      <Sec1 />
+      <Hero2 />
+      <Hero3 />
     </>
   )
 }

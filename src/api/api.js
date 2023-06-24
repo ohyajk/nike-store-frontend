@@ -1,0 +1,1 @@
+export const api = 'https://nike-backend.jitenderkumar.in/api/'

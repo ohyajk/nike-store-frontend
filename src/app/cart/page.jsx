@@ -1,8 +1,53 @@
 "use client"
 import { motion } from 'framer-motion'
 import React from 'react'
+import Card from './card'
 
 const page = () => {
+
+
+
+    const data = [
+        {
+            id: 1,
+            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
+            name: 'Nike Air Max 90',
+            category: 'Mens',
+            price: 25,
+            qty: 2,
+        },
+        {
+            id: 1,
+            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
+            name: 'Nike Air Max 90',
+            category: 'Mens',
+            price: 25,
+            qty: 2,
+        },
+        {
+            id: 1,
+            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
+            name: 'Nike Air Max 90',
+            category: 'Mens',
+            price: 25,
+            qty: 2,
+        },
+        {
+            id: 1,
+            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
+            name: 'Nike Air Max 90',
+            category: 'Mens',
+            price: 25,
+            qty: 2,
+        }
+    ]
+
+    // Cart Logic
+
+    const subTotal = data.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)
+    const delivery = subTotal > 300 ? 10 : 20
+    const gst = (subTotal / 100) * 18
+    const grandTotal = subTotal + delivery + gst
     return (
 
         <motion.main initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className='' >
@@ -14,20 +59,9 @@ const page = () => {
             <section className='grid md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_350px] xl:grid-cols-[1fr_400px] gap-8 pt-8'>
 
                 <section className='py-4 flex flex-col gap-4' >
-                    <div className='p-4 h-[160px] flex items-center gap-4 bg-slate-700/50 border border-white/10 rounded-lg'>
-                        <img className='h-[130px] w-[190px] ' src="https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png" alt="" />
-                        <div className='flex flex-col gap-2 flex-grow'>
-                            <h2 className='text-xl font-semibold' >Nike Air Max 90</h2>
-                            <h3 className='text-lg font-semibold'>Men's Shoes</h3>
-                            <h4 className='text-lg font-semibold' >240$</h4>
-                            <h6>QTY : 2</h6>
-                        </div>
-                        <div className='flex items-center gap-2 bg-org px-4 py-2 cursor-pointer hover:text-org hover:bg-white hover:scale-105 rounded-lg'>
-                            <i className='bx bx-trash text-[32px]'></i>
-                            <p className='text-lg font-semibold'>REMOVE</p>
-                        </div>
-                    </div>
-
+                    {
+                        data.map((c) => <Card data={c} />)
+                    }
                 </section>
                 <section className='py-4' >
                     <div className='p-4 flex flex-col justify-start items-start gap-4 bg-slate-700/50 border border-white/10 rounded-lg'>
@@ -35,20 +69,20 @@ const page = () => {
                         <hr className='h-2 text-white w-full' />
                         <div className='flex justify-between items-center text-xl w-full' >
                             <h4 className='font-semibold'>Subtotal :</h4>
-                            <h4>400$</h4>
+                            <h4>{subTotal}$</h4>
                         </div>
                         <div className='flex justify-between items-center text-xl w-full' >
                             <h4 className='font-semibold'>Delivery :</h4>
-                            <h4>20$</h4>
+                            <h4>{delivery}$</h4>
                         </div>
                         <div className='flex justify-between items-center text-xl w-full' >
                             <h4 className='font-semibold'>GST :</h4>
-                            <h4>20$</h4>
+                            <h4>{gst}$</h4>
                         </div>
                         <hr className='h-2 text-white w-full' />
                         <div className='flex justify-between items-center text-xl w-full' >
                             <h4 className='font-semibold'>Total :</h4>
-                            <h4>440$</h4>
+                            <h4>{grandTotal}$</h4>
                         </div>
                         <hr className='h-2 text-white w-full' />
                         <button className=' py-2 text-lg font-semibold bg-org hover:scale-105 hover:bg-white hover:text-org rounded-lg w-full' >CHECKOUT</button>
