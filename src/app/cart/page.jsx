@@ -5,7 +5,7 @@ import Card from './card'
 
 const page = () => {
 
-    const d = JSON.parse(window.localStorage.getItem('cart'))
+    const d = JSON.parse(localStorage.getItem('cart'))
     const data = d.products?.length > 0 ? d.products : null
     // Cart Logic
 
