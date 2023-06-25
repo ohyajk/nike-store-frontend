@@ -1,11 +1,16 @@
 "use client"
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from './card'
 
 const page = () => {
 
-    const d = JSON.parse(localStorage.getItem('cart'))
+    const [d, setD] = useState({})
+
+    useEffect(() => {
+        setD(JSON.parse(localStorage.getItem('cart')))
+    }, [])
+
     const data = d.products?.length > 0 ? d.products : null
     // Cart Logic
 
