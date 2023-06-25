@@ -10,7 +10,7 @@ const page = () => {
     const { slug } = useParams()
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(loading)
+    console.log(slug)
 
     useEffect(() => {
         getProduct()
