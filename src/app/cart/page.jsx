@@ -5,46 +5,11 @@ import Card from './card'
 
 const page = () => {
 
-
-
-    const data = [
-        {
-            id: 1,
-            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
-            name: 'Nike Air Max 90',
-            category: 'Mens',
-            price: 25,
-            qty: 2,
-        },
-        {
-            id: 1,
-            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
-            name: 'Nike Air Max 90',
-            category: 'Mens',
-            price: 25,
-            qty: 2,
-        },
-        {
-            id: 1,
-            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
-            name: 'Nike Air Max 90',
-            category: 'Mens',
-            price: 25,
-            qty: 2,
-        },
-        {
-            id: 1,
-            image: 'https://w7.pngwing.com/pngs/480/849/png-transparent-unpaired-blue-and-orange-nike-running-shoe-nike-free-air-force-shoe-sneakers-nike-shoes-background-blue-fashion-outdoor-shoe.png',
-            name: 'Nike Air Max 90',
-            category: 'Mens',
-            price: 25,
-            qty: 2,
-        }
-    ]
-
+    const d = JSON.parse(localStorage.getItem('cart'))
+    const data = d.products?.length > 0 ? d.products : null
     // Cart Logic
 
-    const subTotal = data.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)
+    const subTotal = data?.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)
     const delivery = subTotal > 300 ? 10 : 20
     const gst = (subTotal / 100) * 18
     const grandTotal = subTotal + delivery + gst
@@ -60,7 +25,7 @@ const page = () => {
 
                 <section className='py-4 flex flex-col gap-4' >
                     {
-                        data.map((c) => <Card data={c} />)
+                        data?.map((c) => <Card data={c} />)
                     }
                 </section>
                 <section className='py-4' >
