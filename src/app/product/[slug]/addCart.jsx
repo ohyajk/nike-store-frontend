@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 const AddCart = ({ data }) => {
 
-    const cart = JSON.parse(localStorage.getItem('cart'))
+    const cart = JSON.parse(window.localStorage.getItem('cart'))
 
 
     const sizes = [6, 7, 8, 9]
