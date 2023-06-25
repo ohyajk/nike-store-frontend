@@ -1,1 +1,1 @@
-export const api = 'https://nike-store-backend.onrender.com'
+export const api = 'https://nike-store-backend.onrender.com/api'
