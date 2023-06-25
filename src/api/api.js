@@ -1,1 +1,1 @@
-export const api = 'http://localhost:5000/api'
+export const api = 'https://nike-store-backend.onrender.com'
