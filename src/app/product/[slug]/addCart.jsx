@@ -3,15 +3,13 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 const AddCart = ({ data }) => {
 
-    if (typeof window !== 'undefined' && window.localStorage) {
-        const cart = JSON.parse(localStorage.getItem('cart'))
-    }
-
 
     const sizes = [6, 7, 8, 9]
     const [size, setSize] = useState(6)
     const [qty, setQty] = useState(1)
     const [isAdded, setIsAdded] = useState(false)
+    const [cart, setCart] = useState(null)
+
 
 
     const handleAddToCart = () => {
@@ -54,6 +52,11 @@ const AddCart = ({ data }) => {
     }
 
     useEffect(() => {
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const cartt = JSON.parse(localStorage.getItem('cart'))
+            setCart(cartt)
+        }
+
         if (cart?.products?.find((p) => p.id === data?._id)) {
             setIsAdded(true)
         }
