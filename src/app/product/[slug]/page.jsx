@@ -1,31 +1,11 @@
-"use client"
-import React, { useEffect, useState } from 'react'
 import AddCart from './addCart'
 import { api } from '@/api/api'
-import { useParams } from 'next/navigation'
-import Loader from '@/app/components/loader'
 
-const page = () => {
+const page = async ({ params }) => {
 
-    const { slug } = useParams()
-    const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(true)
-    console.log(slug)
-
-    useEffect(() => {
-        getProduct()
-    }, [])
-
-
-    const getProduct = async () => {
-        const res = await fetch(`${api}/product/${slug}`)
-        const data = await res.json()
-        console.log(data)
-        setData(data)
-        setLoading(false)
-    }
-
-    if (loading) return <Loader />
+    const { slug } = params
+    const res = await fetch(`${api}/product/${slug}`)
+    const data = await res.json()
 
     if (data && data?.error == null) {
         return (
@@ -47,7 +27,6 @@ const page = () => {
         )
     }
 
-    if (data?.error == 'An error occurred while retrieving the product') return <h1>An error occurred while retrieving the product</h1>
 }
 
 export default page;
