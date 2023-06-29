@@ -13,7 +13,7 @@ const Box = ({ data }) => {
                 <h2 className='text-white/80 uppercase'>{category}</h2>
                 <h4 className='text-lg font-semibold'>${price} USD</h4>
             </div>
-            <Link href="/product/[slug]" as={`/product/${_id}`}><button className='text-lg font-bold px-4 py-2 border bg-org hover:bg-org/50 rounded-lg w-[250px]'>View Product</button></Link>
+            <Link href={`/product/${_id}`}><button className='text-lg font-bold px-4 py-2 border bg-org hover:bg-org/50 rounded-lg w-[250px]'>View Product</button></Link>
         </div >
     )
 }
