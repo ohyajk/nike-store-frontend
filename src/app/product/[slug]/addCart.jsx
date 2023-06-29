@@ -3,7 +3,9 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 const AddCart = ({ data }) => {
 
-    const cart = JSON.parse(window.localStorage.getItem('cart'))
+    if (typeof window !== 'undefined' && window.localStorage) {
+        const cart = JSON.parse(localStorage.getItem('cart'))
+    }
 
 
     const sizes = [6, 7, 8, 9]
@@ -27,7 +29,9 @@ const AddCart = ({ data }) => {
                     }
                 ]
             }
-            localStorage.setItem('cart', JSON.stringify(newCart))
+            if (typeof window !== 'undefined' && window.localStorage) {
+                localStorage.setItem('cart', JSON.stringify(newCart))
+            }
         } else {
             const newCart = {
                 products: [
@@ -43,7 +47,9 @@ const AddCart = ({ data }) => {
                     }
                 ]
             }
-            localStorage.setItem('cart', JSON.stringify(newCart))
+            if (typeof window !== 'undefined' && window.localStorage) {
+                localStorage.setItem('cart', JSON.stringify(newCart))
+            }
         }
     }
 
