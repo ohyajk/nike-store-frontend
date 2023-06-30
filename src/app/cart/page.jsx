@@ -8,10 +8,12 @@ const page = () => {
     const [d, setD] = useState({})
 
     useEffect(() => {
-        setD(JSON.parse(localStorage.getItem('cart')))
+        if (typeof window !== 'undefined' && window.localStorage) {
+            setD(JSON.parse(window.localStorage.getItem('cart')))
+        }
     }, [])
 
-    const data = d.products?.length > 0 ? d.products : null
+    const data = d?.products?.length > 0 ? d.products : null
     // Cart Logic
 
     const subTotal = data?.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)

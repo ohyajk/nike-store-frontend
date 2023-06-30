@@ -1,66 +1,39 @@
 "use client"
+import { addItem, loadCartFromStorage } from '@/redux/slice/cartSlice'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 const AddCart = ({ data }) => {
 
 
+    const dispatch = useDispatch()
+    const { items } = useSelector(state => state.cart)
+    console.log(items)
     const sizes = [6, 7, 8, 9]
     const [size, setSize] = useState(6)
     const [qty, setQty] = useState(1)
     const [isAdded, setIsAdded] = useState(false)
-    const [cart, setCart] = useState(null)
 
-
-
-    const handleAddToCart = () => {
-        if (cart?.products == null) {
-            const newCart = {
-                products: [
-                    {
-                        id: data._id,
-                        title: data.title,
-                        image: data.image,
-                        price: data.price,
-                        category: data.category,
-                        size: size,
-                        qty: qty
-                    }
-                ]
-            }
-            if (typeof window !== 'undefined' && window.localStorage) {
-                localStorage.setItem('cart', JSON.stringify(newCart))
-            }
-        } else {
-            const newCart = {
-                products: [
-                    ...cart?.products,
-                    {
-                        id: data._id,
-                        title: data.title,
-                        image: data.image,
-                        price: data.price,
-                        category: data.category,
-                        size: size,
-                        qty: qty
-                    }
-                ]
-            }
-            if (typeof window !== 'undefined' && window.localStorage) {
-                localStorage.setItem('cart', JSON.stringify(newCart))
-            }
+    const handleCheckProductInCart = () => {
+        const items = JSON.parse(window.localStorage.getItem('cart'))
+        if (items.length > 0) {
+            const isProduct = items.find((item) => item.id == data._id)
+            return isProduct ? setIsAdded(true) : setIsAdded(false)
         }
     }
 
-    useEffect(() => {
-        if (typeof window !== 'undefined' && window.localStorage) {
-            const cartt = JSON.parse(localStorage.getItem('cart'))
-            setCart(cartt)
-        }
+    const handleAddToCart = () => {
+        dispatch(addItem({ id: data._id, price: data.price, size, qty }))
+    }
 
-        if (cart?.products?.find((p) => p.id === data?._id)) {
-            setIsAdded(true)
-        }
-    }, [handleAddToCart])
+    const handleLoadFromStorage = () => {
+        dispatch(loadCartFromStorage())
+    }
+    useEffect(() => {
+        handleLoadFromStorage()
+        handleCheckProductInCart()
+    }, [])
 
     return (
         <>
@@ -78,7 +51,7 @@ const AddCart = ({ data }) => {
             </select>
             <div className='flex flex-col gap-2'>
                 {isAdded == false &&
-                    <button onClick={() => { handleAddToCart(); setIsAdded(true) }} className='border border-org bg-org hover:bg-transparent text-white font-semibold px-4 py-2 rounded-lg flex justify-center items-center gap-2'>
+                    <button onClick={() => { handleAddToCart(); handleCheckProductInCart() }} className='border border-org bg-org hover:bg-transparent text-white font-semibold px-4 py-2 rounded-lg flex justify-center items-center gap-2'>
                         <i className='bx bx-cart text-[20px]'></i>
                         <p>Add to Cart</p>
                     </button>
