@@ -17,7 +17,7 @@ const AddCart = ({ data }) => {
 
     const handleCheckProductInCart = () => {
         const items = JSON.parse(window.localStorage.getItem('cart'))
-        if (items.length > 0) {
+        if (items?.length > 0) {
             const isProduct = items.find((item) => item.id == data._id)
             return isProduct ? setIsAdded(true) : setIsAdded(false)
         }
