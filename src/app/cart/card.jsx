@@ -1,22 +1,15 @@
 "use client"
+import { removeItem } from '@/redux/slice/cartSlice'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const Card = ({ data }) => {
+    const dispatch = useDispatch()
     const [hide, setHide] = useState(false)
     const { id, image, title, category, price, qty, size } = data
 
-    const removeProductFromCart = (productId) => {
-        const cart = JSON.parse(window.localStorage.getItem('cart'))
-
-        const newCart = []
-
-        for (const product of cart.products) {
-            if (product.id !== productId) {
-                newCart.push(product)
-            }
-        }
-
-        window.localStorage.setItem('cart', JSON.stringify(newCart))
+    const removeProductFromCart = (cartId) => {
+        dispatch(removeItem(cartId))
         setHide(true)
     }
 
@@ -32,7 +25,7 @@ const Card = ({ data }) => {
             </div>
             <div className='flex items-center gap-2 bg-org px-4 py-2 cursor-pointer hover:text-org hover:bg-white hover:scale-105 rounded-lg'>
                 <i className='bx bx-trash text-[32px]'></i>
-                <button type='button' onClick={removeProductFromCart} className='text-lg font-semibold'>REMOVE</button>
+                <button type='button' onClick={() => removeProductFromCart(id)} className='text-lg font-semibold'>REMOVE</button>
             </div>
         </div>
     )

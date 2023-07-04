@@ -7,9 +7,10 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItem: (state, action) => {
-            const { id, price, size, qty } = action.payload;
+            const { id, image, price, size, qty } = action.payload;
             const newItem = {
                 id,
+                image,
                 price,
                 size,
                 qty,

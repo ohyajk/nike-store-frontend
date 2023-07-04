@@ -24,7 +24,7 @@ const AddCart = ({ data }) => {
     }
 
     const handleAddToCart = () => {
-        dispatch(addItem({ id: data._id, price: data.price, size, qty }))
+        dispatch(addItem({ image: data.image, id: data._id, price: data.price, size, qty }))
     }
 
     const handleLoadFromStorage = () => {

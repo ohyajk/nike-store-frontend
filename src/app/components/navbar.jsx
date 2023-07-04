@@ -1,22 +1,19 @@
 "use client"
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
-import { useSelectedLayoutSegment } from 'next/navigation'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
 
     const user = useSelector(state => state.user)
-
-    const currentRoute = useSelectedLayoutSegment()
     const [showMobNav, setShowMobNav] = useState(false)
 
     const buttons = [
-        { link: '/', name: 'HOME', icon: 'home' },
-        { link: 'products', name: 'PRODUCTS', icon: 'list-ul' },
-        { link: 'about', name: 'ABOUT', icon: 'info-circle' },
-        { link: 'contact', name: 'CONTACT', icon: 'envelope' },
+        { link: "/", name: 'HOME', icon: 'home' },
+        { link: "products", name: 'PRODUCTS', icon: 'list-ul' },
+        { link: "about", name: 'ABOUT', icon: 'info-circle' },
+        { link: "contact", name: 'CONTACT', icon: 'envelope' },
     ]
 
     return (
@@ -26,7 +23,7 @@ const Navbar = () => {
                 <svg className='h-6 md:h-8 lg:h-10' aria-hidden="true" focusable="false" viewBox="3 8.72 18 6.28" role="img" fill="#ffffff"><path fill="currentColor" fill-rule="evenodd" d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z" clipRule="evenodd"></path></svg>
                 <ul className='flex justify-center items-center gap-2 md:gap-4 lg:gap-6 md:text-lg lg:text-xl font-medium'>
                     {
-                        buttons.map((btn) => <Link href={btn.link} className='flex flex-nowrap whitespace-nowrap items-center gap-1 hover:scale-110 cursor-pointer'><i className={currentRoute == btn.link ? `bx bx-${btn.icon} text-[20px] md:text-[26px] lg:text-[32px] !text-org` : `bx bx-${btn.icon} text-[20px] md:text-[26px] lg:text-[32px]`}></i><li className={currentRoute == btn.link ? '!text-org navBtn' : 'navBtn'}>{btn.name}</li></Link>)
+                        buttons.map((btn) => <Link href={`/${btn.link}`} className='flex flex-nowrap whitespace-nowrap items-center gap-1 hover:scale-110 cursor-pointer'><i className={`bx bx-${btn.icon} text-[20px] md:text-[26px] lg:text-[32px]`}></i><li className='navBtn'>{btn.name}</li></Link>)
                     }
                 </ul>
                 <ul className='flex justify-center items-center gap-1 md:gap-2 lg:gap-3'>

@@ -1,25 +1,27 @@
 "use client"
 import { motion } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import Card from './card'
+import { loadCartFromStorage } from '@/redux/slice/cartSlice'
 
 const page = () => {
 
-    const [d, setD] = useState({})
+    const dispatch = useDispatch()
+    const { items } = useSelector(state => state.cart)
+
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.localStorage) {
-            setD(JSON.parse(window.localStorage.getItem('cart')))
-        }
+        dispatch(loadCartFromStorage())
     }, [])
 
-    const data = d?.products?.length > 0 ? d.products : null
-    // Cart Logic
-
-    const subTotal = data?.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)
+    const subTotal = items?.map((d) => d.price * d.qty).reduce((a, b) => a + b, 0)
     const delivery = subTotal > 300 ? 10 : 20
     const gst = (subTotal / 100) * 18
     const grandTotal = subTotal + delivery + gst
+
+    // if (items?.length === 0) return <h2>No Products In Cart</h2>
+
     return (
 
         <motion.main initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className='' >
@@ -32,7 +34,7 @@ const page = () => {
 
                 <section className='py-4 flex flex-col gap-4' >
                     {
-                        data?.map((c) => <Card data={c} />)
+                        items?.map((c) => <Card data={c} />)
                     }
                 </section>
                 <section className='py-4' >
