@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const hero = () => {
     return (
@@ -18,7 +19,7 @@ const hero = () => {
                         <motion.h6 initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.7 }} className="text-3xl font-semibold" >489$</motion.h6>
                         <motion.button initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.8 }} className='flex items-center gap-2 bg-org px-4 py-2 cursor-pointer hover:text-org hover:bg-white hover:scale-105 rounded-lg'>
                             <i className='bx bx-cart-add text-[28px]'></i>
-                            <p className='text-lg font-bold'>BUY NOW</p>
+                            <Link href='/products' className='text-lg font-bold'>BUY NOW</Link>
                         </motion.button>
                     </span>
                 </div>
