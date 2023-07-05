@@ -1,27 +1,14 @@
 "use client"
 import Link from 'next/link'
+import Cookies from 'universal-cookie';
+
 
 const page = () => {
+    const cookies = new Cookies();
+    const myCookie = cookies.get('id');
 
-    const getCookieValue = (cookieName) => {
-        const cookieString = document.cookie;
-        const cookieArray = cookieString.split(';');
-
-        let cookieValue = null;
-        cookieArray.forEach(cookie => {
-            const [name, value] = cookie.split('=');
-            const trimmedName = name.trim();
-            if (trimmedName === cookieName) {
-                cookieValue = value.trim();
-            }
-        });
-
-        return cookieValue;
-    };
-
-    // Usage
-    const myCookie = getCookieValue('id');
     console.log(myCookie);
+
     if (myCookie) {
         return (
             <div>
