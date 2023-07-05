@@ -34,6 +34,7 @@ const SignIn = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify(values),
             });
             console.log(response)
@@ -50,9 +51,10 @@ const SignIn = () => {
                 }
                 window.localStorage.setItem('user', JSON.stringify(data));
                 dispatch(setUserFromLocalStorage())
-                setTimeout(() => {
-                    router.push('/');
-                }, 1500);
+                // setTimeout(() => {
+                //     router.push('/');
+                // }, 1500);
+                console.log(cookies)
             }
             if (response.status === 401) {
                 setIsLoading(false)
