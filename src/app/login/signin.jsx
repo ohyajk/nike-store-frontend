@@ -42,19 +42,11 @@ const SignIn = () => {
             if (response.status === 200) {
                 setRes(200)
                 setIsLoading(false)
-                const cookies = response.headers.get('Set-Cookie');
-                if (cookies) {
-                    const cookieArray = cookies.split(';');
-                    cookieArray.forEach(cookie => {
-                        document.cookie = cookie.trim();
-                    });
-                }
                 window.localStorage.setItem('user', JSON.stringify(data));
                 dispatch(setUserFromLocalStorage())
                 // setTimeout(() => {
                 //     router.push('/');
                 // }, 1500);
-                console.log(cookies)
             }
             if (response.status === 401) {
                 setIsLoading(false)

@@ -1,15 +1,28 @@
 "use client"
-
-import { useRouter } from 'next/navigation'
-import cookies from 'next-cookies'
 import Link from 'next/link'
 
 const page = () => {
 
-    const router = useRouter();
-    const { token } = cookies({ req: router.req });
-    console.log(token)
-    if (token) {
+    const getCookieValue = (cookieName) => {
+        const cookieString = document.cookie;
+        const cookieArray = cookieString.split(';');
+
+        let cookieValue = null;
+        cookieArray.forEach(cookie => {
+            const [name, value] = cookie.split('=');
+            const trimmedName = name.trim();
+            if (trimmedName === cookieName) {
+                cookieValue = value.trim();
+            }
+        });
+
+        return cookieValue;
+    };
+
+    // Usage
+    const myCookie = getCookieValue('id');
+    console.log(myCookie);
+    if (myCookie) {
         return (
             <div>
                 <h1>Welcome, user!</h1>
