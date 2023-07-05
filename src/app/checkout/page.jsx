@@ -8,7 +8,7 @@ const page = () => {
 
     const router = useRouter();
     const { token } = cookies({ req: router.req });
-
+    console.log(token)
     if (token) {
         return (
             <div>
