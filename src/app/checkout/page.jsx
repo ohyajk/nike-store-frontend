@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 
 const page = () => {
     const cookies = new Cookies();
-    const myCookie = cookies.get('id');
+    const myCookie = cookies.getAll();
 
     console.log(myCookie);
 
