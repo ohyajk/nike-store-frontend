@@ -9,6 +9,7 @@ const Navbar = () => {
     const [cookies] = useCookies('token', 'id')
     const [user, setUser] = useState(null)
     useEffect(() => {
+
         async function getData() {
             const res = await fetch(`${api}/user/${cookies.id}`, {
                 credentials: 'include',
@@ -17,7 +18,9 @@ const Navbar = () => {
             console.log(res)
             setUser(data)
         }
-        getData()
+        if (cookies.id) {
+            getData()
+        }
     }
         , [cookies])
     const [showMobNav, setShowMobNav] = useState(false)
