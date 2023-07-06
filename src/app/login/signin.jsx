@@ -1,5 +1,6 @@
 "use client"
 import { api } from '@/api/api'
+import { useCookies } from 'react-cookie'
 import { setUserFromLocalStorage } from '@/redux/slice/userSlice'
 import { useFormik } from 'formik'
 import { motion } from 'framer-motion'
@@ -10,6 +11,7 @@ import * as Yup from 'yup'
 
 const SignIn = () => {
 
+    const [cookies, setCookie] = useCookies()
     const router = useRouter()
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
@@ -34,19 +36,20 @@ const SignIn = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
                 body: JSON.stringify(values),
             });
             console.log(response)
             const data = await response.json()
             if (response.status === 200) {
+                setCookie('token', data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
+                setCookie('id', data.id, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
                 setRes(200)
                 setIsLoading(false)
                 window.localStorage.setItem('user', JSON.stringify(data));
                 dispatch(setUserFromLocalStorage())
-                // setTimeout(() => {
-                //     router.push('/');
-                // }, 1500);
+                setTimeout(() => {
+                    router.push('/');
+                }, 1500);
             }
             if (response.status === 401) {
                 setIsLoading(false)

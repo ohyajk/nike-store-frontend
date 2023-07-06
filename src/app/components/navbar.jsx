@@ -1,12 +1,25 @@
 "use client"
+import { api } from '@/api/api'
 import Link from 'next/link'
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-
+import React, { useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 const Navbar = () => {
 
-    const user = useSelector(state => state.user)
+    const [cookies] = useCookies('token', 'id')
+    const [user, setUser] = useState(null)
+    useEffect(() => {
+        async function getData() {
+            const res = await fetch(`${api}/user/${cookies.id}`, {
+                credentials: 'include',
+            })
+            const data = await res.json()
+            console.log(res)
+            setUser(data)
+        }
+        getData()
+    }
+        , [cookies])
     const [showMobNav, setShowMobNav] = useState(false)
 
     const buttons = [
