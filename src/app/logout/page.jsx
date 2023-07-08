@@ -1,21 +1,12 @@
 "use client"
-import { setUserFromLocalStorage } from '@/redux/slice/userSlice'
-import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 
 const page = () => {
-    const router = useRouter()
-    const dispatch = useDispatch()
     useEffect(() => {
-        document.cookie = 'cookieName=token; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        window.localStorage.removeItem('user')
-        window.localStorage.removeItem('cart')
-        dispatch(setUserFromLocalStorage())
         setTimeout(() => {
-            router.push('/')
-        }, 1500);
-    }, [])
+            window.location.href = '/'
+        }, 1000)
+    })
 
     return (
         <div className=' flex flex-col justify-center items-center flex-grow' >

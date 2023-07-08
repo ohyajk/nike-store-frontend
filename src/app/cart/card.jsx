@@ -16,12 +16,12 @@ const Card = ({ data }) => {
     return (
         <div className={hide == true ? 'hidden' : 'p-4 md:h-[160px] flex flex-col md:flex-row items-center gap-4 bg-slate-700/50 border border-white/10 rounded-lg'}>
             <img className='md:h-[130px] md:w-[190px] ' src={image} alt={id} />
-            <div className='flex flex-col gap-2 flex-grow w-full'>
+            <div className='flex flex-col gap-1 flex-grow w-full'>
                 <h2 className='text-xl font-semibold' >{title}</h2>
-                <h3 className='text-lg font-semibold'>{category}</h3>
-                <h4 className='text-lg font-semibold' >{price}$</h4>
-                <h6>QTY : {qty}</h6>
-                <h6>SIZE : {size}</h6>
+                <h3 className='text-md font-semibold uppercase'>CATEGORY : {category}</h3>
+                <h4 className='text-md font-semibold' >PRICE : {price}$</h4>
+                <h6 className='text-md font-semibold'>QTY : {qty}</h6>
+                <h6 className='text-md font-semibold'>SIZE : {size}</h6>
             </div>
             <div className='flex items-center gap-2 bg-org px-4 py-2 cursor-pointer hover:text-org hover:bg-white hover:scale-105 rounded-lg'>
                 <i className='bx bx-trash text-[32px]'></i>

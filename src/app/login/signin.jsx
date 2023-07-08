@@ -1,13 +1,13 @@
 "use client"
 import { api } from '@/api/api'
 import { useCookies } from 'react-cookie'
-import { setUserFromLocalStorage } from '@/redux/slice/userSlice'
 import { useFormik } from 'formik'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
+import { loadName } from '@/redux/slice/nameSlice'
 
 const SignIn = () => {
 
@@ -42,11 +42,11 @@ const SignIn = () => {
             const data = await response.json()
             if (response.status === 200) {
                 setCookie('token', data.token, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
-                setCookie('id', data.id, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
+                setCookie('id', data.user._id, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
+                setCookie('firstName', data.user.firstName, { path: '/', expires: new Date(Date.now() + 1000 * 60 * 60) })
+                dispatch(loadName(data.user.firstName))
                 setRes(200)
                 setIsLoading(false)
-                window.localStorage.setItem('user', JSON.stringify(data));
-                dispatch(setUserFromLocalStorage())
                 setTimeout(() => {
                     router.push('/');
                 }, 1500);

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import Card from './card'
 import { loadCartFromStorage } from '@/redux/slice/cartSlice'
 import Link from 'next/link'
+import { updateItems, updateTotal } from '@/redux/slice/orderSlice'
 
 const page = () => {
 
@@ -20,6 +21,13 @@ const page = () => {
     const delivery = subTotal > 300 ? 10 : 20
     const gst = (subTotal / 100) * 18
     const grandTotal = subTotal + delivery + gst
+
+    const orderItems = items?.map((i) => ({ 'product': i.id, 'quantity': i.qty, 'size': i.size }));
+
+    const addCheckout = () => {
+        dispatch(updateTotal(grandTotal))
+        dispatch(updateItems(orderItems))
+    }
 
     if (items.length > 0) {
 
@@ -52,15 +60,15 @@ const page = () => {
                             </div>
                             <div className='flex justify-between items-center text-xl w-full' >
                                 <h4 className='font-semibold'>GST :</h4>
-                                <h4>{gst}$</h4>
+                                <h4>{gst.toFixed(2)}$</h4>
                             </div>
                             <hr className='h-2 text-white w-full' />
                             <div className='flex justify-between items-center text-xl w-full' >
                                 <h4 className='font-semibold'>Total :</h4>
-                                <h4>{grandTotal}$</h4>
+                                <h4>{grandTotal.toFixed(2)}$</h4>
                             </div>
                             <hr className='h-2 text-white w-full' />
-                            <Link href='/checkout' className='text-center px-4 py-2 text-lg font-semibold bg-org hover:scale-105 hover:bg-white hover:text-org rounded-lg w-full' >CHECKOUT</Link>
+                            <Link href='/checkout' onClick={() => addCheckout()} className='text-center px-4 py-2 text-lg font-semibold bg-org hover:scale-105 hover:bg-white hover:text-org rounded-lg w-full' >CHECKOUT</Link>
                         </div>
 
                     </section>
