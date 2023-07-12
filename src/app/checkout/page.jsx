@@ -2,13 +2,14 @@
 import { api } from '@/api/api';
 import { updateAddress } from '@/redux/slice/orderSlice';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 const page = () => {
-
+    const router = useRouter()
     const dispatch = useDispatch()
     const [cookie, setCookie] = useState(null)
     const [cookies] = useCookies(['token', 'id'])
@@ -36,7 +37,7 @@ const page = () => {
         })
         const data = await res.json()
         console.log(data);
-        console.alert('Order Placed');
+        router.push('/orders')
     }
 
     if (cookie?.token && cookie?.id) {
