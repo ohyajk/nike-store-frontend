@@ -11,7 +11,7 @@ const Footer = () => {
                 </ul>
                 <div>
                     <h2 className='sm:text-xl font-bold'>MADE WITH ❤️ BY JITENDER KUMAR</h2>
-                    <span className='sm:text-xl font-bold flex items-center gap-2'>
+                    <span className='sm:text-xl font-bold flex items-center gap-1'>
                         <p>DESIGN BY CHINMAYEE K. :-</p>
                         <a href="https://www.instagram.com/ux.chinmayee/"><i className='bx bxl-instagram text-3xl hover:text-org'></i></a>
                         <a href="https://www.linkedin.com/in/chinmayee-khavale/"><i className='bx bxl-linkedin text-3xl hover:text-org'></i></a>
